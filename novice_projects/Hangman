@@ -1,0 +1,28 @@
+'''this is the code that does not work'''
+"""My purpose is to make a hangman game"""
+sw = ('asparagus')
+"""This next block of code will handle the inputted guesses from the player"""
+print('Welcome to Hangman! The word is', str(len(sw)), 'letters long.')
+guess = input('Please guess a letter, any letter.')
+turns = 8
+while turns > 0:
+    failed = 0
+    """the next block of code will place a correctly guessed letter in the correct position(s)"""
+    for letter in sw:
+        if letter in guess:
+            print(letter)
+        else:
+            print('_')
+            failed += 1
+    if failed == 0:
+        print('You win!')
+
+    """the next block of code will handle incorrect answers"""
+    guesses = ''
+    guesses += guess
+    if guesses not in sw:
+        print("Sorry, incorrect!")
+    turns =- 1
+    if turns == 0:
+        failed == 1
+        print ("Sorry, you lose!")

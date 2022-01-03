@@ -1,0 +1,47 @@
+import random
+
+play_board = ['0','1','2','3','4','5','6','7','8']
+print(play_board)
+player_list = [] #this is where player's choices are stored for verification
+player_final_answer = [] #this is where verified player's choices are stored
+computer_final_answer = [] #this is where verified computer's choices are stored
+computer = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+random.shuffle(computer)
+player = True
+print('You are o, I am x')
+while player == True: #player's turn
+    try:
+        choice = int(input("Please enter the position where you would like your o to go:"))
+        if choice > 8:
+            choice = int(input("Oops, please pick a number between 0 and 8:"))
+        computer.remove(choice) #computer cannot choose player's choice
+    except ValueError:
+        choice = int(input("Oops, I've already picked that! Pick again:"))
+    player_list.append(choice)
+    
+ #   for x in player_list: #Trying to make it so each list cannot repeat x in the other.
+  #      for y in computer_final_answer:
+   #         if x == y:
+    #            choice = int(input("Sorry, I've already picked that spot. Please enter another position:"))
+     #       else:
+      #          player_final_answer.append(str_choice) #this isn't working
+       #         print(player_final_answer)
+    play_board[choice] = 'o'
+    print(play_board)
+
+    player = False #computer's turn
+    if player == False:
+        print('Now my turn.')
+        computer_choice = computer[0]
+        computer_final_answer.append(computer_choice)
+        print(computer_final_answer)
+        play_board[computer_choice] = 'x'
+        del computer[0]
+        play_board[computer_choice]
+        print(play_board)
+        player = True
+
+   ## if choice == 1,2,3 : 4,5,6 : 7,8,9 : 1,4,7 : 2,5,8 : 3,6,9 : 1,5,9: 3,5,7 #maybe here I should break up the winning combos
+    #print("You win! congratulations!")
+    #if computer == 1,2,3 : 4,5,6 : 7,8,9 : 1,4,7 : 2,5,8 : 3,6,9 : 1,5,9: 3,5,7
+    #print("You lose! Try again next time!")'''

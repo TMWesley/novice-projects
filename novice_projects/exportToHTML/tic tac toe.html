@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>tic tac toe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+tic tac toe</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">random</span>
+
+<span class="s1">play_board = [</span><span class="s2">'0'</span><span class="s0">,</span><span class="s2">'1'</span><span class="s0">,</span><span class="s2">'2'</span><span class="s0">,</span><span class="s2">'3'</span><span class="s0">,</span><span class="s2">'4'</span><span class="s0">,</span><span class="s2">'5'</span><span class="s0">,</span><span class="s2">'6'</span><span class="s0">,</span><span class="s2">'7'</span><span class="s0">,</span><span class="s2">'8'</span><span class="s1">]</span>
+<span class="s1">print(play_board)</span>
+<span class="s1">player_list = [] </span><span class="s3">#this is where player's choices are stored for verification</span>
+<span class="s1">player_final_answer = [] </span><span class="s3">#this is where verified player's choices are stored</span>
+<span class="s1">computer_final_answer = [] </span><span class="s3">#this is where verified computer's choices are stored</span>
+<span class="s1">computer = [</span><span class="s4">0</span><span class="s0">, </span><span class="s4">1</span><span class="s0">, </span><span class="s4">2</span><span class="s0">, </span><span class="s4">3</span><span class="s0">, </span><span class="s4">4</span><span class="s0">, </span><span class="s4">5</span><span class="s0">, </span><span class="s4">6</span><span class="s0">, </span><span class="s4">7</span><span class="s0">, </span><span class="s4">8</span><span class="s1">]</span>
+<span class="s1">random.shuffle(computer)</span>
+<span class="s1">player = </span><span class="s0">True</span>
+<span class="s1">print(</span><span class="s2">'You are o, I am x'</span><span class="s1">)</span>
+<span class="s0">while </span><span class="s1">player == </span><span class="s0">True</span><span class="s1">: </span><span class="s3">#player's turn</span>
+    <span class="s0">try</span><span class="s1">:</span>
+        <span class="s1">choice = int(input(</span><span class="s2">&quot;Please enter the position where you would like your o to go:&quot;</span><span class="s1">))</span>
+        <span class="s0">if </span><span class="s1">choice &gt; </span><span class="s4">8</span><span class="s1">:</span>
+            <span class="s1">choice = int(input(</span><span class="s2">&quot;Oops, please pick a number between 0 and 8:&quot;</span><span class="s1">))</span>
+        <span class="s1">computer.remove(choice) </span><span class="s3">#computer cannot choose player's choice</span>
+    <span class="s0">except </span><span class="s1">ValueError:</span>
+        <span class="s1">choice = int(input(</span><span class="s2">&quot;Oops, I've already picked that! Pick again:&quot;</span><span class="s1">))</span>
+    <span class="s1">player_list.append(choice)</span>
+    
+ <span class="s3">#   for x in player_list: #Trying to make it so each list cannot repeat x in the other.</span>
+  <span class="s3">#      for y in computer_final_answer:</span>
+   <span class="s3">#         if x == y:</span>
+    <span class="s3">#            choice = int(input(&quot;Sorry, I've already picked that spot. Please enter another position:&quot;))</span>
+     <span class="s3">#       else:</span>
+      <span class="s3">#          player_final_answer.append(str_choice) #this isn't working</span>
+       <span class="s3">#         print(player_final_answer)</span>
+    <span class="s1">play_board[choice] = </span><span class="s2">'o'</span>
+    <span class="s1">print(play_board)</span>
+
+    <span class="s1">player = </span><span class="s0">False </span><span class="s3">#computer's turn</span>
+    <span class="s0">if </span><span class="s1">player == </span><span class="s0">False</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">'Now my turn.'</span><span class="s1">)</span>
+        <span class="s1">computer_choice = computer[</span><span class="s4">0</span><span class="s1">]</span>
+        <span class="s1">computer_final_answer.append(computer_choice)</span>
+        <span class="s1">print(computer_final_answer)</span>
+        <span class="s1">play_board[computer_choice] = </span><span class="s2">'x'</span>
+        <span class="s0">del </span><span class="s1">computer[</span><span class="s4">0</span><span class="s1">]</span>
+        <span class="s1">play_board[computer_choice]</span>
+        <span class="s1">print(play_board)</span>
+        <span class="s1">player = </span><span class="s0">True</span>
+
+   <span class="s3">## if choice == 1,2,3 : 4,5,6 : 7,8,9 : 1,4,7 : 2,5,8 : 3,6,9 : 1,5,9: 3,5,7</span>
+    <span class="s3">#print(&quot;You win! congratulations!&quot;)</span>
+    <span class="s3">#if computer == 1,2,3 : 4,5,6 : 7,8,9 : 1,4,7 : 2,5,8 : 3,6,9 : 1,5,9: 3,5,7</span>
+    <span class="s3">#print(&quot;You lose! Try again next time!&quot;)'''</span></pre>
+</body>
+</html>

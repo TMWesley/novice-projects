@@ -1,0 +1,7 @@
+print('Hello, what is your name?')
+myname = input()
+print('Hello ' + myname,', ask the magic 8-ball a question')
+myquestion = input()
+import random
+answer_list = ['Definitely', 'Signs point to yes', 'No', 'Ask again later']
+print(random.choice(answer_list))
